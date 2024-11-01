@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/reset.css') }}">
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/grid.css') }}">
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/slider.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon" />
+  <script src="{{ url_for('static', filename='js/jquery-1.7.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.easing.1.3.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/superfish.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.hoverIntent.minified.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/tms-0.4.1.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/uCarousel.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.ui.totop.js') }}"></script>
+  <script>
+    $(window).load(function () {
+      $('.simple_gallery')._TMS({
+        show: 0,
+        pauseOnHover: true,
+        prevBu: false,
+        nextBu: false,
+        playBu: false,
+        pagNums: false,
+        numStatus: false,
+        duration: 1000,
+        preset: 'diagonalExpand',
+        items: '.items>li',
+        bannerCl: 'banner',
+        pagination: $('.img-pags').uCarousel({ show: 4, shift: 0, buttonClass: 'btn' }),
+        paginationCl: 'gal-pags',
+        slideshow: 9000,
+        banners: 'fromRight',// fromLeft, fromRight, fromTop, fromBottom
+        waitBannerAnimation: false,
+        progressBar: '<div class="pro_progbar"></div>'
+      })
+      $().UItoTop({ easingType: 'easeOutQuart' });
+    });
+  </script>
+</head>
+
+<body>
+  <!--==============================header=================================-->
+  <div class="main">
+    <div class="head">
+      <header>
+        <h1><a href="about"><strong>Flavorful</strong><span>Kitchen Secrets </span></a></h1>
+        <nav>
+          <ul class="sf-menu">
+
+            <div class="logout-btn" onclick="handleLogout()">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </div>
+            <script>
+              function handleLogout() {
+                // logic of logout
+                alert('Logging out...');
+                window.location.href = "logout";
+              }
+            </script>
+
+            <div class="user-btn">
+              <i class="fa-solid fa-user-large"></i>
+            </div>
+            <script>
+              const loginBtn = document.querySelector(".user-btn");
+              loginBtn.onclick = () => {
+                window.location.href = "login";
+              }
+            </script>
+            <li class="current"><a href="">About Us</a></li>
+            <li><a href="/">Our Recipes</a>
+            <li><a href="bookmark" id="bookmarks-link">Bookmark</a></li>
+            </li>
+          </ul>
+        </nav>
+        <div class="clear"></div>
+      </header>
+      <div id="simple_gallery">
+        <!-- slider -->
+        <div class="gallery_bg">
+          <div class="simple_gallery">
+            <ul class="items">
+              <li><img src="{{ url_for('static', filename='images/projekakhirr_slide.png') }}" alt="" /></li>
+              <li><img src="{{ url_for('static', filename='images/kel22_slide.png') }}" alt="" /> </li>
+              <li><img src="{{ url_for('static', filename='images/kelass_slide.png') }}" alt="" /> </li>
+              <li><img src="{{ url_for('static', filename='images/moredetails_slide.png') }}" alt="" /> </li>
+            </ul>
+          </div>
+        </div>
+        <!-- slider end -->
+        <div class="pag">
+          <div class="img-pags">
+            <ul>
+              <li><a href="#"><span><img src="{{ url_for('static', filename='images/slider100.png') }}"
+                      alt="" /></span></a></li>
+              <li><a href="#"><span><img src="{{ url_for('static', filename='images/slider100.png') }}"
+                      alt="" /></span></a></li>
+              <li><a href="#"><span><img src="{{ url_for('static', filename='images/slider100.png') }}"
+                      alt="" /></span></a></li>
+              <li><a href="#"><span><img src="{{ url_for('static', filename='images/slider100.png') }}"
+                      alt="" /></span></a></li>
+            </ul>
+          </div>
+          <a href="#" class="btn prev " data-type="prevPage"><span></span></a>
+          <a href="#" class="btn next" data-type="nextPage"><span></span></a>
+        </div>
+      </div>
+    </div>
+    <!--==============================content================================-->
+    <section id="content">
+      <div class="container_24">
+        <div class="wrapper bg-wrapper">
+          <div class="grid_18 bg-grid top-2">
+            <h2 class="txt-al padd">Kami Kelompok 2, Beranggotakan</h2>
+            <div class="bg-grid">
+              <div class="grid_6 marg-left-0">
+                <img src="{{ url_for('static', filename='images/fotoaini.png') }}" alt="" class="image top">
+              </div>
+              <div class="grid_11 suffix_1 marg-right-0">
+                <strong class="nama-anggota">Nur Aini Dwi Lestari</strong>
+                <p class="bot">NIM 123230045</p>
+                <p class="bot">IF - B</p>
+                <a href="#deskripsi-anchor" class="deskripsi">Read More About Us</a>
+              </div>
+              <div class="clear"></div>
+            </div>
+
+            <div class="grid_18 bg-grid top-2">
+              <div class="bg-grid">
+                <div class="grid_6 marg-left-0">
+                  <img src="{{ url_for('static', filename='images/fotoakbar.png') }}" alt="" class="image top">
+                </div>
+                <div class="grid_11 suffix_1 marg-right-0">
+                  <strong class="nama-anggota">Muhammad Akbar Riziq</strong>
+                  <p class="bot">NIM 123230062</p>
+                  <p class="bot">IF - B</p>
+                  <a href="#deskripsi-anchor" class="deskripsi">Read More About Us</a>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div class="grid_18 bg-grid top-2">
+                <div class="bg-grid">
+                  <div class="grid_6 marg-left-0">
+                    <img src="{{ url_for('static', filename='images/fotobayu.png') }}" alt="" class="image top">
+                  </div>
+                  <div class="grid_11 suffix_1 marg-right-0">
+                    <strong class="nama-anggota">Bayu Java Trenggana</strong>
+                    <p class="bot">NIM 123230066</p>
+                    <p class="bot">IF - B</p>
+                    <a href="#deskripsi-anchor" class="deskripsi">Read More About Us</a>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+
+                <div class="grid_18 bg-grid top-2">
+                  <div class="bg-grid">
+                    <div class="grid_6 marg-left-0">
+                      <img src="{{ url_for('static', filename='images/fotorara.png') }}" alt="" class="image top">
+                    </div>
+                    <div class="grid_11 suffix_1 marg-right-0">
+                      <strong class="nama-anggota">Naurah Rifdah Nur Ramadhani</strong>
+                      <p class="bot">NIM 123230068</p>
+                      <p class="bot">IF - B</p>
+                      <a href="#deskripsi-anchor" class="deskripsi">Read More About Us</a>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+
+                  <div class="grid_18 bg-grid top-2">
+                    <div class="bg-grid">
+                      <div class="grid_6 marg-left-0">
+                        <img src="{{ url_for('static', filename='images/fotobintang.png') }}" alt="" class="image top">
+                      </div>
+                      <div class="grid_11 suffix_1 marg-right-0">
+                        <strong class="nama-anggota">Bintang Jati Kesuma Subagyo</strong>
+                        <p class="bot">NIM 123230075</p>
+                        <p class="bot">IF - B</p>
+                        <a href="#deskripsi-anchor" class="deskripsi">Read More About Us</a>
+                      </div>
+                      <div class="clear"></div>
+                    </div>
+
+                    <div class="box" style="margin-top: 90px; margin-left: 80px;">
+                      <div id="deskripsi-anchor">
+                        <p>Kami merupakan suatu kelompok yang terbentuk untuk mengerjakan tugas pada mata kuliah
+                          Algoritma dan Pemrograman Lanjut. Kami diberi tugas untuk membuat sebuah program sebagai
+                          projek akhir mata kuliah ini.
+                          Dalam proyek ini, kami telah merancang dan mengimplementasikan sebuah solusi berbasis
+                          algoritma untuk memecahkan masalah untuk mencari resep yang nikmat bagi sebagian orang.
+                          Kami mengimplementasikan solusi kami menggunakan bahasa pemrograman web dan python.</p>
+                        <p>Kami ingin mengucapkan terima kasih kepada Bapak Mangaras Yanu F., S.T., M.Eng. atas
+                          bimbingan dan dukungannya yang tak ternilai selama pengerjaan proyek ini.
+                          Kami juga berterima kasih kepada para anggota kelompok atas kerja sama dan kontribusi mereka
+                          yang luar biasa.
+                          Kami berharap laporan ini dapat memberikan informasi yang bermanfaat dan menjadi referensi
+                          yang berharga bagi para pembaca.
+                          Kami terbuka untuk menerima kritik dan saran untuk meningkatkan kualitas proyek kami di masa
+                          mendatang.</p>
+
+                        <p>Terima kasih atas perhatian dan waktunya. </p>
+                      </div>
+                    </div>
+                  </div>
+                </div><!--the end of wrapper-->
+              </div>
+    </section>
+    <!--==============================footer=================================-->
+    <footer>
+      <div class="main-footer">
+        <div class="container_24">
+          <div class="grid_17">
+            <div class="icons">
+              <span class="facebook">Join Us on <a href="#">Facebook<strong></strong></a></span>
+              <span class="twitter">Join Us on <a href="#">Twitter<strong></strong></a></span>
+            </div>
+          </div>
+          <div class="grid_7">
+            <p>Cooking &copy; 2024 </p>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>

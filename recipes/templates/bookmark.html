@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/reset.css') }}">
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/grid.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon" />
+</head>
+
+<body>
+  <div class="main">
+    <div class="head">
+      <header>
+        <h1><a href="/"><strong>Flavorful</strong><span>Kitchen Secrets </span></a></h1>
+        <nav>
+          <ul class="sf-menu">
+
+            <div class="logout-btn" onclick="handleLogout()">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </div>
+            <script>
+              function handleLogout() {
+                // logic of logout
+                alert('Logging out...');
+                window.location.href = "logout";
+              }
+            </script>
+
+            <div class="user-btn">
+              <i class="fa-solid fa-user-large"></i>
+            </div>
+            <script>
+              const loginBtn = document.querySelector(".user-btn");
+              loginBtn.onclick = () => {
+                window.location.href = "login";
+              }
+            </script>
+            <form action="/" method="POST">
+              <div class="search-box">
+                <input type="text" placeholder="cari menu?" name="search_query">
+                <div class="search-icon">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="cancel-icon">
+                  <i class="fa-solid fa-xmark"></i>
+                </div>
+                <div class="search-data"></div>
+              </div>
+            </form>
+            <script>
+              const searchBox = document.querySelector(".search-box");
+              const searchBtn = document.querySelector(".search-icon");
+              const cancelBtn = document.querySelector(".cancel-icon");
+              const searchInput = document.querySelector("input");
+              const searchData = document.querySelector(".search-data");
+              cancelBtn.style.display = "none";
+              searchBtn.onclick = () => {
+                cancelBtn.style.display = "block";
+                searchBox.classList.add("active");
+                searchBtn.classList.add("active");
+                searchInput.classList.add("active");
+                cancelBtn.classList.add("active");
+                searchInput.focus();
+                if (searchInput.value != "") {
+                  var values = searchInput.value;
+                  searchData.classList.remove("active");
+                  searchData.innerHTML = "You just typed " + "<span style='font-weight: 500;'>" + values + "</span>";
+                } else {
+                  searchData.textContent = "";
+                }
+              }
+              cancelBtn.onclick = () => {
+                searchBox.classList.remove("active");
+                searchBtn.classList.remove("active");
+                searchInput.classList.remove("active");
+                cancelBtn.classList.remove("active");
+                searchData.classList.toggle("active");
+                searchInput.value = "";
+                cancelBtn.style.display = "none";
+              }
+            </script>
+            <li><a href="about">About Us</a></li>
+            <li><a href="/" id="recipes-link">Our Recipes</a>
+            <li class="current"><a href="bookmark" id="bookmarks-link">Bookmark</a></li>
+            </li>
+          </ul>
+        </nav>
+        <div class="clear"></div>
+      </header>
+    </div>
+    <!--==============================content================================-->
+    <section id="content">
+      <div class="container_24">
+        <div class="wrapper bg-wrapper">
+          <div class="grid_22 suffix_1">
+            <h2 class="txt-al padd">Bookmark</h2>
+            {% for message in get_flashed_messages() %}
+            <div class="message">
+              {{ message }}
+            </div>
+            {% endfor %}
+            <table id="myTable" class="table table-striped table-bordered" style="width:100%">
+              <thead>
+                <tr>
+                  <th>Gambar</th>
+                  <th>Nama</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for recipe in recipes %}
+                <tr>
+                  <td><img src="{{ recipe.image }}" alt="Gambar Resep" style="height: 100px;"></td>
+                  <td>{{ recipe.title }}</td>
+                  <td>
+                    <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}">Lihat Resep</a>
+                    <a href="{{ url_for('hapus', recipe_id=recipe.id) }}"
+                      style="margin-right: 5px;margin-left: 15px">Hapus Resep</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="clear"></div>
+          <div class="grid_24 bg-bot"></div>
+        </div><!--the end of wrapper-->
+      </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $('#myTable').DataTable();
+      });
+    </script>
+</body>
+
+</html>
